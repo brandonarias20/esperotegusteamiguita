@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Un detalle para ti 🌷</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    font-family:Georgia, "Times New Roman", serif;
+    background:
+        radial-gradient(circle at 50% 20%, #ffffff 0%, #fff1f7 35%, #f3bdd2 100%);
+    color:#681b3c;
+}
+
+/* Pétalos flotando */
+.petal{
+    position:fixed;
+    top:-30px;
+    width:11px;
+    height:17px;
+    background:#ee8fb2;
+    border-radius:70% 30% 70% 30%;
+    opacity:.45;
+    animation:caer linear infinite;
+}
+
+@keyframes caer{
+    from{
+        transform:translateY(-10vh) rotate(0deg);
+    }
+    to{
+        transform:translateY(110vh) rotate(360deg);
+    }
+}
+
+.contenedor{
+    width:min(430px,92%);
+    padding:35px 28px;
+    text-align:center;
+    border:1px solid #edb0c7;
+    border-radius:30px;
+    background:rgba(255,255,255,.78);
+    backdrop-filter:blur(12px);
+    box-shadow:0 25px 70px rgba(128,35,73,.25);
+    position:relative;
+    z-index:2;
+    animation:entrada 1s ease;
+}
+
+@keyframes entrada{
+    from{
+        opacity:0;
+        transform:translateY(30px) scale(.95);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+.flor{
+    font-size:55px;
+    margin-bottom:10px;
+    animation:flotar 3s ease-in-out infinite;
+}
+
+@keyframes flotar{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-8px);}
+}
+
+h1{
+    font-size:clamp(28px,8vw,40px);
+    color:#982653;
+    margin-bottom:10px;
+}
+
+.descripcion{
+    font-size:16px;
+    line-height:1.6;
+    color:#80566a;
+    margin-bottom:25px;
+}
+
+label{
+    display:block;
+    text-align:left;
+    font-size:14px;
+    margin-bottom:8px;
+    color:#782045;
+    font-weight:bold;
+}
+
+input{
+    width:100%;
+    padding:15px;
+    border:1px solid #e1a0ba;
+    border-radius:14px;
+    outline:none;
+    font-size:16px;
+    color:#5c1837;
+    background:white;
+}
+
+input:focus{
+    border-color:#c83d72;
+    box-shadow:0 0 0 4px rgba(200,61,114,.12);
+}
+
+button{
+    width:100%;
+    margin-top:17px;
+    padding:15px;
+    border:0;
+    border-radius:14px;
+    background:linear-gradient(135deg,#b72e68,#e16b98);
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 10px 25px rgba(183,46,104,.3);
+    transition:.3s;
+}
+
+button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 15px 30px rgba(183,46,104,.4);
+}
+
+button:active{
+    transform:scale(.97);
+}
+
+@media(max-width:480px){
+    .contenedor{
+        padding:30px 22px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<script>
+/* Crear pétalos */
+for(let i=0;i<22;i++){
+
+    const petalo=document.createElement("div");
+
+    petalo.className="petal";
+
+    petalo.style.left=Math.random()*100+"vw";
+
+    petalo.style.animationDuration=
+        (5+Math.random()*7)+"s";
+
+    petalo.style.animationDelay=
+        (-Math.random()*10)+"s";
+
+    petalo.style.transform=
+        `scale(${0.5+Math.random()*0.8})`;
+
+    document.body.appendChild(petalo);
+}
+</script>
+
+<div class="contenedor">
+
+    <div class="flor">🌷</div>
+
+    <h1>Un detalle para ti</h1>
+
+    <p class="descripcion">
+        Escribe tu nombre para descubrir la pequeña sorpresa
+        que preparé para ti.
+    </p>
+
+    <form id="formulario">
+
+        <label for="nombre">
+            Tu nombre
+        </label>
+
+        <input
+            type="text"
+            id="nombre"
+            placeholder="Escribe tu nombre..."
+            maxlength="30"
+            autocomplete="name"
+            required
+        >
+<a href="pagina2.html">
+        <button type="button">
+            Descubrir sorpresa ✨
+        </button>
+    </a>
+    </form>
+
+</div>
+
+<script>
+
+document
+.getElementById("formulario")
+.addEventListener("submit",function(event){
+
+    event.preventDefault();
+
+    const nombre=
+        document.getElementById("nombre")
+        .value.trim();
+
+    if(nombre===""){
+        return;
+    }
+
+    window.location.href=
+        "flores.html?nombre="+
+        encodeURIComponent(nombre);
+
+});
+
+</script>
+
+</body>
+</html>

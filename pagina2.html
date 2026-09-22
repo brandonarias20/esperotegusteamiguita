@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+name="theme-color"
+content="#f6bfd3"
+>
+
+<title>Un ramo para ti 🌷</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html,body{
+    min-height:100%;
+}
+
+body{
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+
+    font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+    color:#641a39;
+
+    background:
+    radial-gradient(
+        circle at 50% 8%,
+        #ffffff 0%,
+        #fff3f8 27%,
+        #f8cada 65%,
+        #e9a7c2 100%
+    );
+}
+
+/* =====================================
+   PÉTALOS DEL FONDO
+===================================== */
+
+#petalos{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:0;
+}
+
+.petalo-caida{
+
+    position:absolute;
+
+    top:-30px;
+
+    width:12px;
+    height:18px;
+
+    border-radius:
+    70% 30% 70% 30%;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ffb4d0,
+        #d94f87
+    );
+
+    opacity:.5;
+
+    animation:
+    lluvia linear infinite;
+}
+
+@keyframes lluvia{
+
+    0%{
+        transform:
+        translate3d(0,-10vh,0)
+        rotate(0deg);
+    }
+
+    100%{
+        transform:
+        translate3d(var(--movimiento),110vh,0)
+        rotate(600deg);
+    }
+}
+
+/* =====================================
+   ENCABEZADO
+===================================== */
+
+header{
+
+    position:relative;
+
+    z-index:5;
+
+    text-align:center;
+
+    padding:
+    30px 18px 5px;
+}
+
+.nombre{
+
+    margin:0;
+
+    font-size:
+    clamp(30px,8vw,52px);
+
+    color:#90234f;
+
+    text-shadow:
+    0 3px 15px
+    rgba(142,32,78,.15);
+
+    animation:
+    aparecer 1.2s ease;
+}
+
+.subtitulo{
+
+    margin-top:8px;
+
+    font-size:15px;
+
+    color:#85546a;
+}
+
+@keyframes aparecer{
+
+    from{
+        opacity:0;
+        transform:
+        translateY(-20px);
+    }
+
+    to{
+        opacity:1;
+        transform:
+        translateY(0);
+    }
+}
+
+/* =====================================
+   ESCENA DEL RAMO
+===================================== */
+
+.escena{
+
+    position:relative;
+
+    z-index:2;
+
+    width:min(720px,96vw);
+
+    margin:auto;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+}
+
+/* =====================================
+   RAMO
+===================================== */
+
+.ramo{
+
+    position:relative;
+
+    width:min(650px,96vw);
+
+    height:510px;
+
+    animation:
+    aparecerRamo 1.5s ease;
+}
+
+@keyframes aparecerRamo{
+
+    from{
+        opacity:0;
+        transform:
+        translateY(50px)
+        scale(.85);
+    }
+
+    to{
+        opacity:1;
+        transform:
+        translateY(0)
+        scale(1);
+    }
+}
+
+/* =====================================
+   TULIPÁN
+===================================== */
+
+.tulipan{
+
+    position:absolute;
+
+    bottom:125px;
+
+    width:58px;
+
+    height:145px;
+
+    transform:
+    rotate(var(--rotacion));
+
+    transform-origin:
+    bottom center;
+
+    animation:
+    balanceo 4s ease-in-out infinite;
+
+    animation-delay:
+    var(--delay);
+
+    z-index:var(--z);
+}
+
+@keyframes balanceo{
+
+    0%,100%{
+        transform:
+        rotate(var(--rotacion));
+    }
+
+    50%{
+        transform:
+        rotate(
+        calc(
+        var(--rotacion) + 2deg
+        )
+        );
+    }
+}
+
+/* =====================================
+   TALLO
+===================================== */
+
+.tallo{
+
+    position:absolute;
+
+    left:27px;
+
+    top:50px;
+
+    width:6px;
+
+    height:110px;
+
+    border-radius:10px;
+
+    background:
+    linear-gradient(
+        90deg,
+        #356c3d,
+        #75b960,
+        #2b6339
+    );
+
+    box-shadow:
+    1px 0 2px rgba(0,0,0,.15);
+}
+
+/* =====================================
+   HOJAS
+===================================== */
+
+.hoja{
+
+    position:absolute;
+
+    top:100px;
+
+    left:2px;
+
+    width:58px;
+
+    height:28px;
+
+    border-radius:
+    100% 0 100% 0;
+
+    background:
+    linear-gradient(
+        135deg,
+        #7cbd65,
+        #347546
+    );
+
+    transform:
+    rotate(-30deg);
+
+    box-shadow:
+    inset -5px -3px 5px
+    rgba(29,79,42,.35);
+}
+
+.hoja.derecha{
+
+    left:15px;
+
+    transform:
+    scaleX(-1)
+    rotate(-30deg);
+}
+
+/* =====================================
+   FLOR
+===================================== */
+
+.flor-tulipan{
+
+    position:absolute;
+
+    top:0;
+
+    left:2px;
+
+    width:56px;
+
+    height:78px;
+
+    z-index:3;
+
+    border-radius:
+    50% 50% 43% 43% /
+    70% 70% 35% 35%;
+
+    background:
+    linear-gradient(
+        90deg,
+        #c83e78 0%,
+        #f486ad 30%,
+        #ffabc9 48%,
+        #e8669a 70%,
+        #b82d68 100%
+    );
+
+    box-shadow:
+
+    inset
+    7px 0 9px
+    rgba(255,255,255,.3),
+
+    inset
+    -9px 0 12px
+    rgba(133,25,77,.35),
+
+    0 8px 14px
+    rgba(124,30,72,.18);
+}
+
+/* Pétalos individuales */
+
+.flor-tulipan::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-3px;
+
+    left:-1px;
+
+    width:33px;
+
+    height:49px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #e35b8d,
+        #ff9fc1
+    );
+
+    border-radius:
+    70% 35% 60% 30%;
+
+    transform:
+    rotate(-12deg);
+
+    z-index:-1;
+}
+
+.flor-tulipan::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:-3px;
+
+    right:-1px;
+
+    width:33px;
+
+    height:49px;
+
+    background:
+    linear-gradient(
+        225deg,
+        #c63c74,
+        #f78db3
+    );
+
+    border-radius:
+    35% 70% 30% 60%;
+
+    transform:
+    rotate(12deg);
+
+    z-index:-1;
+}
+
+/* Interior del tulipán */
+
+.interior{
+
+    position:absolute;
+
+    left:16px;
+
+    top:3px;
+
+    width:24px;
+
+    height:57px;
+
+    border-radius:
+    50%;
+
+    background:
+    linear-gradient(
+        90deg,
+        #ffbdd5,
+        #dc4c83
+    );
+
+    opacity:.85;
+}
+
+/* =====================================
+   CINTA DEL RAMO
+===================================== */
+
+.cinta{
+
+    position:absolute;
+
+    bottom:82px;
+
+    left:50%;
+
+    transform:
+    translateX(-50%);
+
+    width:190px;
+
+    height:78px;
+
+    border-radius:
+    18px 18px 13px 13px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #f5d8e3,
+        #fff5f8
+    );
+
+    border:
+    2px solid #d68aa7;
+
+    box-shadow:
+    0 15px 30px
+    rgba(104,27,58,.15);
+
+    z-index:15;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+}
+
+.cinta span{
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    line-height:1.4;
+
+    color:#962e59;
+
+    padding:10px;
+}
+
+/* Lazos */
+
+.cinta::before,
+.cinta::after{
+
+    content:"";
+
+    position:absolute;
+
+    bottom:-32px;
+
+    width:72px;
+
+    height:80px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #e78dab,
+        #b94070
+    );
+
+    z-index:-1;
+}
+
+.cinta::before{
+
+    left:8px;
+
+    transform:
+    skewY(25deg)
+    rotate(15deg);
+
+    clip-path:
+    polygon(
+    0 0,
+    100% 0,
+    75% 100%,
+    45% 75%
+    );
+}
+
+.cinta::after{
+
+    right:8px;
+
+    transform:
+    skewY(-25deg)
+    rotate(-15deg);
+
+    clip-path:
+    polygon(
+    0 0,
+    100% 0,
+    55% 75%,
+    25% 100%
+    );
+}
+
+/* =====================================
+   CARTA
+===================================== */
+
+.carta{
+
+    position:relative;
+
+    z-index:20;
+
+    width:min(570px,92vw);
+
+    margin:
+    0 auto 35px;
+
+    padding:25px;
+
+    text-align:center;
+
+    background:
+    linear-gradient(
+        145deg,
+        #fffefd,
+        #fff5f8
+    );
+
+    border:
+    1px solid #e1b2c3;
+
+    border-radius:22px;
+
+    box-shadow:
+    0 20px 50px
+    rgba(105,27,58,.18);
+
+    animation:
+    subirCarta 1.3s ease;
+}
+
+@keyframes subirCarta{
+
+    from{
+        opacity:0;
+        transform:
+        translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:
+        translateY(0);
+    }
+}
+
+.carta h2{
+
+    color:#962754;
+
+    margin-bottom:9px;
+
+    font-size:21px;
+}
+
+.carta p{
+
+    color:#815063;
+
+    margin-bottom:17px;
+
+    line-height:1.6;
+
+    font-size:15px;
+}
+
+/* =====================================
+   BOTÓN
+===================================== */
+
+#botonCarta{
+
+    border:0;
+
+    border-radius:999px;
+
+    padding:
+    13px 28px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #b62e68,
+        #df6595
+    );
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:
+    0 10px 25px
+    rgba(166,40,91,.3);
+
+    transition:.3s;
+}
+
+#botonCarta:hover{
+
+    transform:
+    translateY(-3px);
+
+    box-shadow:
+    0 15px 30px
+    rgba(166,40,91,.4);
+}
+
+#botonCarta:active{
+
+    transform:
+    scale(.96);
+}
+
+/* =====================================
+   MENSAJE
+===================================== */
+
+.mensaje{
+
+    display:none;
+
+    margin-top:18px;
+
+    padding:18px;
+
+    border-radius:16px;
+
+    background:
+    #fff0f6;
+
+    border:
+    1px solid #f0c3d5;
+
+    color:#8c2852;
+
+    line-height:1.7;
+
+    font-size:16px;
+
+    animation:
+    abrirCarta .7s ease;
+}
+
+.mensaje.mostrar{
+
+    display:block;
+}
+
+@keyframes abrirCarta{
+
+    from{
+
+        opacity:0;
+
+        transform:
+        translateY(-12px)
+        scale(.97);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+        translateY(0)
+        scale(1);
+    }
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media(max-width:600px){
+
+    header{
+        padding-top:24px;
+    }
+
+    .ramo{
+
+        height:450px;
+    }
+
+    .tulipan{
+
+        transform:
+        rotate(var(--rotacion))
+        scale(.76);
+
+        bottom:108px;
+    }
+
+    .cinta{
+
+        bottom:65px;
+
+        transform:
+        translateX(-50%)
+        scale(.86);
+    }
+
+    .carta{
+
+        margin-top:0;
+
+        padding:21px 18px;
+    }
+
+    .mensaje{
+
+        font-size:15px;
+    }
+}
+
+@media(max-width:380px){
+
+    .ramo{
+
+        height:420px;
+    }
+
+    .tulipan{
+
+        transform:
+        rotate(var(--rotacion))
+        scale(.65);
+    }
+
+    .cinta{
+
+        transform:
+        translateX(-50%)
+        scale(.75);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =====================================
+     PÉTALOS DEL FONDO
+===================================== -->
+
+<div id="petalos"></div>
+
+<!-- =====================================
+     ENCABEZADO
+===================================== -->
+
+<header>
+
+    <h1 class="nombre">
+        Para <span id="nombreUsuario">ti</span> 🌷
+    </h1>
+
+    <p class="subtitulo">
+        Un pequeño detalle hecho especialmente para ti
+    </p>
+
+</header>
+
+<!-- =====================================
+     ESCENA
+===================================== -->
+
+<main class="escena">
+
+<section
+class="ramo"
+id="ramo">
+    
+    <!--
+    Los 20 tulipanes se generan
+    automáticamente con JavaScript.
+    -->
+
+    <div class="cinta">
+
+        <span>
+            20 tulipanes para
+            una persona especial
+        </span>
+
+    </div>
+
+</section>
+
+<!-- =====================================
+     CARTA
+===================================== -->
+
+<section class="carta">
+
+    <h2>
+        💌 Una pequeña carta
+    </h2>
+
+    <p>
+        Hay algo guardado aquí para ti.
+    </p>
+
+    <button id="botonCarta">
+        Abrir carta ✨
+    </button>
+
+    <div
+    class="mensaje"
+    id="mensaje">
+
+        No te doy flores amarillas porque
+        eso se lo dan a todas, pero si te
+        doy este ramo de tulipanes para que
+        sigas siendo una en un millón.
+
+    </div>
+
+</section>
+
+</main>
+
+<script>
+
+/* =====================================
+   OBTENER EL NOMBRE DE LA URL
+===================================== */
+
+const parametros =
+new URLSearchParams(
+    window.location.search
+);
+
+const nombre =
+parametros.get("nombre");
+
+if(nombre){
+
+    document
+    .getElementById("nombreUsuario")
+    .textContent = nombre;
+
+}
+
+/* =====================================
+   CREAR 20 TULIPANES
+===================================== */
+
+const posiciones = [
+
+    [50,-2,1],
+    [36,0,0],
+    [64,2,2],
+
+    [25,-3,-2],
+    [75,4,3],
+
+    [14,7,-4],
+    [86,7,4],
+
+    [43,9,-1],
+    [57,9,1],
+
+    [31,13,-3],
+    [69,13,3],
+
+    [8,17,-5],
+    [92,17,5],
+
+    [21,20,-4],
+    [79,20,4],
+
+    [39,23,-2],
+    [61,23,2],
+
+    [30,27,-3],
+    [70,27,3],
+
+    [50,31,0]
+
+];
+
+/*
+Cada elemento representa:
+
+[posición horizontal,
+ retraso,
+ inclinación]
+*/
+
+const ramo =
+document.getElementById("ramo");
+
+posiciones.forEach(
+    ([x,delay,rotacion],indice)=>{
+
+        const tulipan =
+        document.createElement("div");
+
+        tulipan.className =
+        "tulipan";
+
+        tulipan.style.left =
+        `calc(${x}% - 29px)`;
+
+        tulipan.style.setProperty(
+            "--rotacion",
+            `${rotacion}deg`
+        );
+
+        tulipan.style.setProperty(
+            "--delay",
+            `${indice * -0.12}s`
+        );
+
+        tulipan.style.setProperty(
+            "--z",
+            indice
+        );
+
+        tulipan.innerHTML = `
+
+            <div class="tallo"></div>
+
+            <div class="hoja"></div>
+
+            <div class="hoja derecha"></div>
+
+            <div class="flor-tulipan">
+
+                <div class="interior"></div>
+
+            </div>
+
+        `;
+
+        ramo.appendChild(tulipan);
+
+    }
+);
+
+/* =====================================
+   PÉTALOS FLOTANTES
+===================================== */
+
+const contenedorPetalos =
+document.getElementById("petalos");
+
+for(let i=0;i<35;i++){
+
+    const petalo =
+    document.createElement("span");
+
+    petalo.className =
+    "petalo-caida";
+
+    petalo.style.left =
+    Math.random()*100+"%";
+
+    petalo.style.setProperty(
+        "--movimiento",
+        (Math.random()*180-90)+"px"
+    );
+
+    petalo.style.animationDuration =
+    (6+Math.random()*8)+"s";
+
+    petalo.style.animationDelay =
+    (-Math.random()*12)+"s";
+
+    petalo.style.transform =
+    `scale(${.45+Math.random()*.8})`;
+
+    contenedorPetalos
+    .appendChild(petalo);
+
+}
+
+/* =====================================
+   ABRIR / CERRAR CARTA
+===================================== */
+
+const boton =
+document.getElementById(
+    "botonCarta"
+);
+
+const mensaje =
+document.getElementById(
+    "mensaje"
+);
+
+boton.addEventListener(
+    "click",
+    function(){
+
+        mensaje.classList.toggle(
+            "mostrar"
+        );
+
+        if(
+            mensaje.classList.contains(
+                "mostrar"
+            )
+        ){
+
+            boton.textContent =
+            "Cerrar carta 💗";
+
+        }else{
+
+            boton.textContent =
+            "Abrir carta ✨";
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
